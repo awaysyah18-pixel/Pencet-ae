@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Way'an | Personal Website</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: white;
+    background: url("background.jpg") center/cover fixed;
+    overflow-x: hidden;
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.35),
+        rgba(0, 0, 0, 0.75)
+    );
+    z-index: -2;
+}
+
+.particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.particle {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+
+    20%, 80% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
+}
+
+#musicButton {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+
+    padding: 12px 18px;
+
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 30px;
+
+    color: white;
+    background: rgba(255,255,255,0.12);
+
+    backdrop-filter: blur(12px);
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+#musicButton:hover {
+    transform: scale(1.08);
+    background: rgba(255,255,255,0.25);
+}
+
+.container {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 80px 20px;
+}
+
+.profile-card {
+    width: 100%;
+    max-width: 750px;
+
+    padding: 45px 35px;
+
+    border-radius: 25px;
+
+    background: rgba(0,0,0,0.45);
+
+    backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(255,255,255,0.2);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.55);
+
+    animation: appear 1.5s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.profile-icon {
+    text-align: center;
+
+    font-size: 55px;
+
+    margin-bottom: 15px;
+
+    animation:
+        floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+h1 {
+    text-align: center;
+
+    font-size: 42px;
+
+    margin-bottom: 15px;
+}
+
+h1 span {
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #9de8ff,
+            #ffffff
+        );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+.typing {
+    text-align: center;
+
+    min-height: 30px;
+
+    font-size: 18px;
+
+    color: #d9f5ff;
+
+    margin-bottom: 25px;
+}
+
+#typingText::after {
+    content: "|";
+
+    animation:
+        blink 0.7s infinite;
+}
+
+@keyframes blink {
+
+    50% {
+        opacity: 0;
+    }
+}
+
+.intro {
+    text-align: center;
+
+    line-height: 1.8;
+
+    color: #e5e5e5;
+}
+
+.line {
+    height: 1px;
+
+    background:
+        rgba(255,255,255,0.25);
+
+    margin: 30px 0;
+}
+
+section {
+    margin-top: 35px;
+}
+
+section h2 {
+    font-size: 24px;
+
+    margin-bottom: 15px;
+}
+
+section p {
+    color: #ddd;
+
+    line-height: 1.8;
+}
+
+.info-box,
+.hobby {
+
+    padding: 20px;
+
+    border-radius: 15px;
+
+    background:
+        rgba(255,255,255,0.08);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.12);
+
+    transition: 0.3s;
+}
+
+.info-box:hover,
+.hobby:hover {
+
+    transform:
+        translateY(-7px);
+
+    background:
+        rgba(255,255,255,0.15);
+}
+
+.hobbies {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 15px;
+}
+
+.hobby {
+    text-align: center;
+}
+
+.hobby span {
+
+    display: block;
+
+    font-size: 35px;
+
+    margin-bottom: 10px;
+}
+
+.quote {
+
+    margin-top: 45px;
+
+    padding: 25px;
+
+    text-align: center;
+
+    border-left:
+        3px solid
+        rgba(255,255,255,0.7);
+
+    background:
+        rgba(255,255,255,0.05);
+}
+
+.quote p {
+
+    font-style: italic;
+
+    font-size: 18px;
+}
+
+footer {
+
+    text-align: center;
+
+    margin-top: 50px;
+
+    color: #ddd;
+}
+
+footer .small {
+
+    margin-top: 8px;
+
+    font-size: 12px;
+
+    opacity: 0.6;
+}
+
+@media (max-width: 600px) {
+
+    .container {
+        padding: 70px 15px;
+    }
+
+    .profile-card {
+        padding: 35px 22px;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    .hobbies {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<div class="particles"></div>
+
+<audio id="music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<button id="musicButton" onclick="toggleMusic()">
+    🎵 Music
+</button>
+
+<main class="container">
+
+<div class="profile-card">
+
+    <div class="profile-icon">
+        🌊
+    </div>
+
+    <h1>
+        Hi, I'm <span>Way'an</span>
+    </h1>
+
+    <div class="typing">
+        <span id="typingText"></span>
+    </div>
+
+    <p class="intro">
+        Welcome to my personal space.
+        This website contains a little information
+        about me, my interests, hobbies, and things I enjoy.
+    </p>
+
+    <div class="line"></div>
+
+    <section>
+
+        <h2>👤 About Me</h2>
+
+        <p>
+            My name is <b>Way'an</b>.
+            I am an English Education student.
+            I enjoy learning new things,
+            exploring technology, playing games,
+            and enjoying beautiful places.
+        </p>
+
+    </section>
+
+    <section>
+
+        <h2>🎓 Education</h2>
+
+        <div class="info-box">
+
+            <h3>
+                English Education
+            </h3>
+
+            <p>
+                PBI / A 2025
+            </p>
+
+        </div>
+
+    </section>
+
+    <section>
+
+        <h2>🎯 My Hobbies</h2>
+
+        <div class="hobbies">
+
+            <div class="hobby">
+
+                <span>🎮</span>
+
+                <p>
+                    Playing PUBG
+                </p>
+
+            </div>
+
+            <div class="hobby">
+
+                <span>🌊</span>
+
+                <p>
+                    Exploring Beaches
+                </p>
+
+            </div>
+
+            <div class="hobby">
+
+                <span>💻</span>
+
+                <p>
+                    Technology
+                </p>
+
+            </div>
+
+            <div class="hobby">
+
+                <span>🎧</span>
+
+                <p>
+                    Listening to Music
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="quote">
+
+        <p>
+            "Sometimes, the sound of the waves
+            is all you need to clear your mind."
+        </p>
+
+    </section>
+
+    <footer>
+
+        <p>
+            Made with 🌊 by Way'an
+        </p>
+
+        <p class="small">
+            © 2026 My Personal Website
+        </p>
+
+    </footer>
+
+</div>
+
+</main>
+
+<script>
+
+const texts = [
+
+    "English Education Student",
+    "PUBG Player 🎮",
+    "Beach Lover 🌊",
+    "Technology Enthusiast 💻",
+    "Just a simple person ✨"
+
+];
+
+let textIndex = 0;
+
+let charIndex = 0;
+
+let deleting = false;
+
+const typingText =
+    document.getElementById("typingText");
+
+function typingEffect() {
+
+    const currentText =
+        texts[textIndex];
+
+    if (!deleting) {
+
+        typingText.textContent =
+            currentText.substring(
+                0,
+                charIndex + 1
+            );
+
+        charIndex++;
+
+        if (
+            charIndex ===
+            currentText.length
+        ) {
+
+            deleting = true;
+
+            setTimeout(
+                typingEffect,
+                1800
+            );
+
+            return;
+        }
+
+    } else {
+
+        typingText.textContent =
+            currentText.substring(
+                0,
+                charIndex - 1
+            );
+
+        charIndex--;
+
+        if (charIndex === 0) {
+
+            deleting = false;
+
+            textIndex++;
+
+            if (
+                textIndex >=
+                texts.length
+            ) {
+
+                textIndex = 0;
+
+            }
+        }
+    }
+
+    setTimeout(
+        typingEffect,
+        deleting ? 50 : 90
+    );
+}
+
+typingEffect();
+
+
+const particleContainer =
+    document.querySelector(".particles");
+
+for (let i = 0; i < 40; i++) {
+
+    const particle =
+        document.createElement("div");
+
+    particle.classList.add("particle");
+
+    particle.style.left =
+        Math.random() * 100 + "%";
+
+    particle.style.animationDuration =
+        (4 + Math.random() * 6) + "s";
+
+    particle.style.animationDelay =
+        Math.random() * 5 + "s";
+
+    const size =
+        2 + Math.random() * 4;
+
+    particle.style.width =
+        size + "px";
+
+    particle.style.height =
+        size + "px";
+
+    particleContainer.appendChild(
+        particle
+    );
+}
+
+
+const music =
+    document.getElementById("music");
+
+const musicButton =
+    document.getElementById("musicButton");
+
+let isPlaying = false;
+
+function toggleMusic() {
+
+    if (!isPlaying) {
+
+        music.play();
+
+        musicButton.textContent =
+            "🔊 Music ON";
+
+        isPlaying = true;
+
+    } else {
+
+        music.pause();
+
+        musicButton.textContent =
+            "🔇 Music OFF";
+
+        isPlaying = false;
+    }
+}
+
+</script>
+
+</body>
+</html>
