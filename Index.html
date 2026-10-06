@@ -1,653 +1,418 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Way'an | Personal Website</title>
-
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
-    color: white;
-    body {
-    background: url("IMG_20260711_154351.jpg") center/cover fixed;
-}
-    overflow-x: hidden;
-}
-
-.overlay {
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(
-        rgba(0, 0, 0, 0.35),
-        rgba(0, 0, 0, 0.75)
-    );
-    z-index: -2;
-}
-
-.particles {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: -1;
-}
-
-.particle {
-    position: absolute;
-    background: white;
-    border-radius: 50%;
-    opacity: 0.7;
-    animation: float 6s linear infinite;
-}
-
-@keyframes float {
-    0% {
-        transform: translateY(100vh);
-        opacity: 0;
-    }
-
-    20%, 80% {
-        opacity: 0.8;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>For You ♡</title>
 
-    100% {
-        transform: translateY(-10vh);
-        opacity: 0;
-    }
-}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow: hidden;
+            font-family: "Poppins", Arial, sans-serif;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background:
+                radial-gradient(circle at 20% 20%, #ffd6e7 0%, transparent 35%),
+                radial-gradient(circle at 80% 80%, #c8d6ff 0%, transparent 35%),
+                linear-gradient(135deg, #f8cdda, #d8c7ff, #b8d9ff);
+
+            animation: backgroundMove 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes backgroundMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* PARTICLES */
+
+        .particle {
+            position: absolute;
+            bottom: -50px;
+            font-size: 20px;
+            opacity: 0.5;
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* CARD */
+
+        .card {
+            position: relative;
+            z-index: 10;
+
+            width: 90%;
+            max-width: 520px;
+
+            padding: 45px 30px;
+
+            text-align: center;
+
+            background: rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255,255,255,0.45);
+
+            border-radius: 30px;
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            box-shadow:
+                0 20px 60px rgba(0,0,0,0.15);
+
+            animation: cardAppear 1.2s ease;
+        }
+
+        @keyframes cardAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(40px) scale(0.9);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* TEXT */
+
+        .small {
+            font-size: 14px;
+            letter-spacing: 3px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 38px;
+            color: #333;
+            margin-bottom: 20px;
+
+            animation: softGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes softGlow {
+            from {
+                text-shadow: 0 0 5px rgba(255,100,150,0.2);
+            }
+
+            to {
+                text-shadow: 0 0 20px rgba(255,100,150,0.5);
+            }
+        }
+
+        .message {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 30px;
+        }
+
+        .question {
+            font-size: 21px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 30px;
+        }
 
-#musicButton {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 100;
-
-    padding: 12px 18px;
-
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 30px;
-
-    color: white;
-    background: rgba(255,255,255,0.12);
+        /* BUTTONS */
 
-    backdrop-filter: blur(12px);
+        .buttons {
+            position: relative;
+            height: 80px;
 
-    cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 18px;
+        }
 
-    transition: 0.3s;
-}
+        button {
+            border: none;
+            padding: 14px 30px;
 
-#musicButton:hover {
-    transform: scale(1.08);
-    background: rgba(255,255,255,0.25);
-}
+            border-radius: 50px;
 
-.container {
-    min-height: 100vh;
+            font-size: 16px;
+            font-weight: bold;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+            cursor: pointer;
 
-    padding: 80px 20px;
-}
+            transition: 0.3s ease;
+        }
 
-.profile-card {
-    width: 100%;
-    max-width: 750px;
+        #yes {
+            color: white;
 
-    padding: 45px 35px;
+            background: linear-gradient(
+                135deg,
+                #ff6b9d,
+                #ff477e
+            );
 
-    border-radius: 25px;
+            box-shadow:
+                0 8px 25px rgba(255,71,126,0.35);
+        }
 
-    background: rgba(0,0,0,0.45);
+        #yes:hover {
+            transform: scale(1.12);
+            box-shadow:
+                0 12px 35px rgba(255,71,126,0.5);
+        }
 
-    backdrop-filter: blur(15px);
+        #no {
+            color: #555;
+            background: rgba(255,255,255,0.7);
 
-    border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+        }
 
-    box-shadow:
-        0 20px 60px rgba(0,0,0,0.55);
+        /* RESULT */
 
-    animation: appear 1.5s ease;
-}
+        #result {
+            display: none;
 
-@keyframes appear {
-    from {
-        opacity: 0;
-        transform: translateY(50px);
-    }
+            margin-top: 25px;
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+            animation: resultAppear 1s ease;
+        }
 
-.profile-icon {
-    text-align: center;
+        #result h2 {
+            color: #ff477e;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
 
-    font-size: 55px;
+        #result p {
+            color: #555;
+            font-size: 16px;
+        }
 
-    margin-bottom: 15px;
+        @keyframes resultAppear {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
 
-    animation:
-        floating 3s ease-in-out infinite;
-}
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
 
-@keyframes floating {
+        /* GLOW */
 
-    0%, 100% {
-        transform: translateY(0);
-    }
+        .glow {
+            position: absolute;
 
-    50% {
-        transform: translateY(-12px);
-    }
-}
+            width: 250px;
+            height: 250px;
 
-h1 {
-    text-align: center;
+            background: #ff9fbd;
 
-    font-size: 42px;
+            filter: blur(100px);
 
-    margin-bottom: 15px;
-}
+            opacity: 0.35;
 
-h1 span {
-    background:
-        linear-gradient(
-            90deg,
-            #ffffff,
-            #9de8ff,
-            #ffffff
-        );
+            border-radius: 50%;
 
-    -webkit-background-clip: text;
+            animation: glowMove 6s ease-in-out infinite alternate;
+        }
 
-    -webkit-text-fill-color: transparent;
-}
+        .glow.one {
+            top: -100px;
+            left: -100px;
+        }
 
-.typing {
-    text-align: center;
+        .glow.two {
+            bottom: -100px;
+            right: -100px;
+            background: #9fbaff;
+        }
 
-    min-height: 30px;
+        @keyframes glowMove {
+            from {
+                transform: translate(0,0);
+            }
 
-    font-size: 18px;
+            to {
+                transform: translate(60px,40px);
+            }
+        }
 
-    color: #d9f5ff;
-
-    margin-bottom: 25px;
-}
-
-#typingText::after {
-    content: "|";
-
-    animation:
-        blink 0.7s infinite;
-}
-
-@keyframes blink {
-
-    50% {
-        opacity: 0;
-    }
-}
-
-.intro {
-    text-align: center;
-
-    line-height: 1.8;
-
-    color: #e5e5e5;
-}
-
-.line {
-    height: 1px;
-
-    background:
-        rgba(255,255,255,0.25);
-
-    margin: 30px 0;
-}
-
-section {
-    margin-top: 35px;
-}
-
-section h2 {
-    font-size: 24px;
-
-    margin-bottom: 15px;
-}
-
-section p {
-    color: #ddd;
-
-    line-height: 1.8;
-}
-
-.info-box,
-.hobby {
-
-    padding: 20px;
-
-    border-radius: 15px;
-
-    background:
-        rgba(255,255,255,0.08);
-
-    border:
-        1px solid
-        rgba(255,255,255,0.12);
-
-    transition: 0.3s;
-}
-
-.info-box:hover,
-.hobby:hover {
-
-    transform:
-        translateY(-7px);
-
-    background:
-        rgba(255,255,255,0.15);
-}
-
-.hobbies {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 15px;
-}
-
-.hobby {
-    text-align: center;
-}
-
-.hobby span {
-
-    display: block;
-
-    font-size: 35px;
-
-    margin-bottom: 10px;
-}
-
-.quote {
-
-    margin-top: 45px;
-
-    padding: 25px;
-
-    text-align: center;
-
-    border-left:
-        3px solid
-        rgba(255,255,255,0.7);
-
-    background:
-        rgba(255,255,255,0.05);
-}
-
-.quote p {
-
-    font-style: italic;
-
-    font-size: 18px;
-}
-
-footer {
-
-    text-align: center;
-
-    margin-top: 50px;
-
-    color: #ddd;
-}
-
-footer .small {
-
-    margin-top: 8px;
-
-    font-size: 12px;
-
-    opacity: 0.6;
-}
-
-@media (max-width: 600px) {
-
-    .container {
-        padding: 70px 15px;
-    }
-
-    .profile-card {
-        padding: 35px 22px;
-    }
-
-    h1 {
-        font-size: 32px;
-    }
-
-    .hobbies {
-        grid-template-columns: 1fr;
-    }
-}
-</style>
+    </style>
 </head>
 
 <body>
 
-<div class="overlay"></div>
+    <!-- BACKGROUND GLOW -->
 
-<div class="particles"></div>
+    <div class="glow one"></div>
+    <div class="glow two"></div>
 
-<audio id="music" loop>
-    <source src="Inner Peace_musicaldown.com_1790837480.mp3" type="audio/mpeg">
-</audio>
 
-<button id="musicButton" onclick="toggleMusic()">
-    🎵 Music
-</button>
+    <!-- PARTICLES -->
 
-<main class="container">
+    <div class="particle" style="left:5%; animation-duration:8s;">♡</div>
+    <div class="particle" style="left:15%; animation-duration:6s;">✦</div>
+    <div class="particle" style="left:25%; animation-duration:9s;">♡</div>
+    <div class="particle" style="left:35%; animation-duration:7s;">✧</div>
+    <div class="particle" style="left:45%; animation-duration:10s;">♡</div>
+    <div class="particle" style="left:55%; animation-duration:6s;">✦</div>
+    <div class="particle" style="left:65%; animation-duration:8s;">♡</div>
+    <div class="particle" style="left:75%; animation-duration:7s;">✧</div>
+    <div class="particle" style="left:85%; animation-duration:9s;">♡</div>
+    <div class="particle" style="left:95%; animation-duration:6s;">✦</div>
 
-<div class="profile-card">
 
-    <div class="profile-icon">
-        🌊
-    </div>
+    <!-- CARD -->
 
-    <h1>
-        Hi, I'm <span>Way'an</span>
-    </h1>
+    <div class="card">
 
-    <div class="typing">
-        <span id="typingText"></span>
-    </div>
+        <div class="small">
+            I HAVE SOMETHING TO SAY...
+        </div>
 
-    <p class="intro">
-        Welcome to my personal space.
-        This website contains a little information
-        about me, my interests, hobbies, and things I enjoy.
-    </p>
+        <h1>For You ♡</h1>
 
-    <div class="line"></div>
+        <div class="message">
 
-    <section>
+            Ada sesuatu yang sudah lama ingin aku sampaikan.
 
-        <h2>👤 About Me</h2>
+            <br>
 
-        <p>
-            My name is <b>Way'an</b>.
-            I am an English Education student.
-            I enjoy learning new things,
-            exploring technology, playing games,
-            and enjoying beautiful places.
-        </p>
+            Setiap kali ngobrol sama kamu,
+            entah kenapa hariku terasa sedikit lebih menyenangkan.
 
-    </section>
+        </div>
 
-    <section>
+        <div class="question">
+            Maukah kamu menjadi seseorang yang spesial buat aku? ♡
+        </div>
 
-        <h2>🎓 Education</h2>
 
-        <div class="info-box">
+        <div class="buttons">
 
-            <h3>
-                English Education
-            </h3>
+            <button id="yes" onclick="yesAnswer()">
+                Iya ♡
+            </button>
+
+            <button id="no" onmouseover="moveNo()">
+                Tidak
+            </button>
+
+        </div>
+
+
+        <!-- RESULT -->
+
+        <div id="result">
+
+            <h2>Yey... ♡</h2>
 
             <p>
-                PBI / A 2025
+                Terima kasih sudah memilih "Iya". 🥹
+                <br>
+                Semoga kita bisa membuat banyak cerita bersama.
             </p>
 
         </div>
 
-    </section>
+    </div>
 
-    <section>
 
-        <h2>🎯 My Hobbies</h2>
+    <script>
 
-        <div class="hobbies">
+        function yesAnswer() {
 
-            <div class="hobby">
+            document.getElementById("result").style.display = "block";
 
-                <span>🎮</span>
+            document.getElementById("yes").style.display = "none";
+            document.getElementById("no").style.display = "none";
 
-                <p>
-                    Playing PUBG
-                </p>
-
-            </div>
-
-            <div class="hobby">
-
-                <span>🌊</span>
-
-                <p>
-                    Exploring Beaches
-                </p>
-
-            </div>
-
-            <div class="hobby">
-
-                <span>💻</span>
-
-                <p>
-                    Technology
-                </p>
-
-            </div>
-
-            <div class="hobby">
-
-                <span>🎧</span>
-
-                <p>
-                    Listening to Music
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <section class="quote">
-
-        <p>
-            "Sometimes, the sound of the waves
-            is all you need to clear your mind."
-        </p>
-
-    </section>
-
-    <footer>
-
-        <p>
-            Made with 🌊 by Way'an
-        </p>
-
-        <p class="small">
-            © 2026 My Personal Website
-        </p>
-
-    </footer>
-
-</div>
-
-</main>
-
-<script>
-
-const texts = [
-
-    "English Education Student",
-    "PUBG Player 🎮",
-    "Beach Lover 🌊",
-    "Technology Enthusiast 💻",
-    "Just a simple person ✨"
-
-];
-
-let textIndex = 0;
-
-let charIndex = 0;
-
-let deleting = false;
-
-const typingText =
-    document.getElementById("typingText");
-
-function typingEffect() {
-
-    const currentText =
-        texts[textIndex];
-
-    if (!deleting) {
-
-        typingText.textContent =
-            currentText.substring(
-                0,
-                charIndex + 1
-            );
-
-        charIndex++;
-
-        if (
-            charIndex ===
-            currentText.length
-        ) {
-
-            deleting = true;
-
-            setTimeout(
-                typingEffect,
-                1800
-            );
-
-            return;
+            createParticles();
         }
 
-    } else {
 
-        typingText.textContent =
-            currentText.substring(
-                0,
-                charIndex - 1
-            );
+        function moveNo() {
 
-        charIndex--;
+            const button = document.getElementById("no");
 
-        if (charIndex === 0) {
+            const maxX = window.innerWidth - button.offsetWidth - 20;
+            const maxY = window.innerHeight - button.offsetHeight - 20;
 
-            deleting = false;
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
 
-            textIndex++;
+            button.style.position = "fixed";
 
-            if (
-                textIndex >=
-                texts.length
-            ) {
+            button.style.left = randomX + "px";
+            button.style.top = randomY + "px";
+        }
 
-                textIndex = 0;
 
+        function createParticles() {
+
+            const symbols = ["♡", "✦", "✧", "✨"];
+
+            for (let i = 0; i < 40; i++) {
+
+                const particle = document.createElement("div");
+
+                particle.className = "particle";
+
+                particle.innerHTML =
+                    symbols[Math.floor(Math.random() * symbols.length)];
+
+                particle.style.left =
+                    Math.random() * 100 + "vw";
+
+                particle.style.fontSize =
+                    Math.random() * 20 + 15 + "px";
+
+                particle.style.animationDuration =
+                    Math.random() * 4 + 3 + "s";
+
+                document.body.appendChild(particle);
+
+                setTimeout(() => {
+                    particle.remove();
+                }, 7000);
             }
         }
-    }
 
-    setTimeout(
-        typingEffect,
-        deleting ? 50 : 90
-    );
-}
-
-typingEffect();
-
-
-const particleContainer =
-    document.querySelector(".particles");
-
-for (let i = 0; i < 40; i++) {
-
-    const particle =
-        document.createElement("div");
-
-    particle.classList.add("particle");
-
-    particle.style.left =
-        Math.random() * 100 + "%";
-
-    particle.style.animationDuration =
-        (4 + Math.random() * 6) + "s";
-
-    particle.style.animationDelay =
-        Math.random() * 5 + "s";
-
-    const size =
-        2 + Math.random() * 4;
-
-    particle.style.width =
-        size + "px";
-
-    particle.style.height =
-        size + "px";
-
-    particleContainer.appendChild(
-        particle
-    );
-}
-
-
-const music =
-    document.getElementById("music");
-
-const musicButton =
-    document.getElementById("musicButton");
-
-let isPlaying = false;
-
-function toggleMusic() {
-
-    if (!isPlaying) {
-
-        music.play();
-
-        musicButton.textContent =
-            "🔊 Music ON";
-
-        isPlaying = true;
-
-    } else {
-
-        music.pause();
-
-        musicButton.textContent =
-            "🔇 Music OFF";
-
-        isPlaying = false;
-    }
-}
-
-</script>
+    </script>
 
 </body>
 </html>
